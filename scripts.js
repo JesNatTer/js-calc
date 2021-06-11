@@ -2,12 +2,14 @@ let numbers = document.getElementById("numbers");
 let operator = document.getElementById("operators");
 let maindisplay = document.getElementById("maindisplay");
 let topdisplay = document.getElementById("topdisplay");
-
+let result;
 numbers.addEventListener("click", displayNumber);
 
 function displayNumber(e) {
+  if (maindisplay.innerHTML == result) {
+    maindisplay.innerHTML = "";
+  }
   if (e.target.classList.contains("n9")) {
-    maindisplay.innerText = "";
     maindisplay.textContent = maindisplay.textContent + 9;
   }
   if (e.target.classList.contains("n8")) {
@@ -50,61 +52,22 @@ operator.addEventListener("click", operation);
 
 function operation(e) {
   if (e.target.classList.contains("add")) {
-    if (topdisplay.innerText == "") {
-      topdisplay.innerText = maindisplay.innerText + "+";
-      maindisplay.innerText = "";
-    } else if (topdisplay.innerText != "") {
-      topdisplay.innerText = topdisplay.innerText + maindisplay.innerText + "+";
-    }
+    maindisplay.innerHTML += "+";
   }
   if (e.target.classList.contains("minus")) {
-    if (topdisplay.innerHTML == "") {
-      topdisplay.innerHTML = maindisplay.innerHTML + "-";
-      maindisplay.innerHTML = "";
-    } else {
-      topdisplay.innerHTML = topdisplay.innerHTML + maindisplay.innerHTML + "-";
-      maindisplay.innerHTML = "";
-    }
+    maindisplay.innerHTML += "-";
   }
   if (e.target.classList.contains("multiply")) {
-    if (topdisplay.innerHTML == "") {
-      topdisplay.innerHTML = maindisplay.innerHTML + "*";
-      maindisplay.innerHTML = "";
-    } else {
-      topdisplay.innerHTML = topdisplay.innerHTML + maindisplay.innerHTML + "*";
-      maindisplay.innerHTML = "";
-    }
+    maindisplay.innerHTML += "*";
   }
   if (e.target.classList.contains("divide")) {
-    if (topdisplay.innerHTML == "") {
-      topdisplay.innerHTML = maindisplay.innerHTML + "/";
-      maindisplay.innerHTML = "";
-    } else {
-      topdisplay.innerHTML = topdisplay.innerHTML + maindisplay.innerHTML + "/";
-      maindisplay.innerHTML = "";
-    }
+    maindisplay.innerHTML += "/";
   }
   if (e.target.classList.contains("equals")) {
-    result =
-      parseFloat(topdisplay.nodeValue) + parseFloat(maindisplay.nodeValue);
+    result = eval(maindisplay.innerHTML);
     maindisplay.innerHTML = result;
   }
-  if (e.target.classList.contains("posneg")) {
-    if (topdisplay.innerHTML == "") {
-      topdisplay.innerHTML = maindisplay.innerHTML + "+";
-      maindisplay.innerHTML = "";
-    } else {
-      topdisplay.innerHTML = topdisplay.innerHTML + maindisplay.innerHTML + "+";
-      maindisplay.innerHTML = "";
-    }
-  }
   if (e.target.classList.contains("delete")) {
-    if (topdisplay.innerHTML == "") {
-      topdisplay.innerHTML = maindisplay.innerHTML + "+";
-      maindisplay.innerHTML = "";
-    } else {
-      topdisplay.innerHTML = topdisplay.innerHTML + maindisplay.innerHTML + "+";
-      maindisplay.innerHTML = "";
-    }
+    maindisplay.innerHTML = maindisplay.innerHTML.slice(0, -1);
   }
 }

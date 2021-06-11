@@ -76,7 +76,13 @@ body {
   border: 1px solid #777;
   display: grid;
   place-items: center;
+  transition: 0.5s ease;
 }
+
+.number:hover {
+  background: grey;
+}
+
 .number span {
   color: white;
   font-size: 20px;
@@ -99,6 +105,11 @@ body {
   border: 1px solid #777;
   display: grid;
   place-items: center;
+  transition: 0.5s ease;
+}
+
+.operator:hover {
+  background: grey;
 }
 
 .operator span {
